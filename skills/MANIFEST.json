@@ -1,0 +1,75 @@
+{
+  "01-github-continuity.zip": {
+    "sha256": "80efec9a6cbbb49135eabeafb339bf13f74ff6ddef9706659871b30a2c020d7e",
+    "bytes": 6561,
+    "entries": [
+      "README.md",
+      "SKILL.md",
+      "references/AGENTS.md",
+      "references/GLOBAL_RULES.md",
+      "references/HANDOFF_TEMPLATE.md",
+      "references/SKILL_INDEX.md",
+      "references/VERIFICATION.md"
+    ]
+  },
+  "02-ios-deb-ipa-carplay.zip": {
+    "sha256": "c87b5ed9ef196c13f42dd41df49a032369028742cc8f6d56569637daf76ec7cf",
+    "bytes": 5928,
+    "entries": [
+      "README.md",
+      "SKILL.md",
+      "references/DEB_IPA_SKILL.md",
+      "references/GLOBAL_RULES.md",
+      "references/SKILL_INDEX.md",
+      "references/VERIFICATION.md"
+    ]
+  },
+  "03-python-crawler-resolver.zip": {
+    "sha256": "060f6196e072524e90cc8086c2392583e2bd846fce1c35d5482e7a2674482650",
+    "bytes": 5790,
+    "entries": [
+      "README.md",
+      "SKILL.md",
+      "references/GLOBAL_RULES.md",
+      "references/PYTHON_CRAWLER_SKILL.md",
+      "references/SKILL_INDEX.md",
+      "references/VERIFICATION.md"
+    ]
+  },
+  "04-ci-cd-render-cloud.zip": {
+    "sha256": "d39a336f7c2337c53b9f53e4f8921e68497d5120dbae2d05e2455031bccc5558",
+    "bytes": 5814,
+    "entries": [
+      "README.md",
+      "SKILL.md",
+      "references/AGENTS.md",
+      "references/GLOBAL_RULES.md",
+      "references/SKILL_INDEX.md",
+      "references/VERIFICATION.md"
+    ]
+  },
+  "05-research-debug-testing.zip": {
+    "sha256": "fcb1122412a11664c2c6b8666cbc4f76e86ad20f96e697138d96c6425137dc98",
+    "bytes": 5783,
+    "entries": [
+      "README.md",
+      "SKILL.md",
+      "references/AGENTS.md",
+      "references/GLOBAL_RULES.md",
+      "references/SKILL_INDEX.md",
+      "references/VERIFICATION.md"
+    ]
+  },
+  "06-artifact-zip-handoff.zip": {
+    "sha256": "63b511fbf78dac8be8d09f77600630a67eeaef0729e17f652e54b154ba3ad933",
+    "bytes": 5729,
+    "entries": [
+      "README.md",
+      "SKILL.md",
+      "references/GLOBAL_RULES.md",
+      "references/HANDOFF_TEMPLATE.md",
+      "references/SKILL_INDEX.md",
+      "references/VERIFICATION.md"
+    ]
+  }
+}
