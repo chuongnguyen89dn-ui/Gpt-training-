@@ -15,3 +15,9 @@ Routing rules:
 3. Fetch the project's actual history, handoff, related ZIP/artifact, code and workflow.
 4. Execute and verify. Save all necessary deliverables in the correct target repo.
 5. If GitHub access is missing, explain the limitation; do not claim a ZIP or repository was read.
+
+
+## ZIP skill discovery priority
+Search **Gpt-training-** by feature first for a matching skill ZIP (including nested paths). If present, inspect its contents or verified extracted equivalent. The Markdown files above are fallback/entry points and do not imply a ZIP exists. Do not substitute ZIP files from the target work repository for centrally stored skill packages.
+
+Keep deliverables and handoff in the target project's own repo. If no target repo exists, ask the user to create one or authorize use of a shared handoff repo; do not choose silently.
