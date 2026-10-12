@@ -1,0 +1,67 @@
+name: Expand and publish skill ZIPs
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-skills.yml'
+      - 'AGENTS.md'
+      - 'DEB_IPA_SKILL.md'
+      - 'PYTHON_CRAWLER_SKILL.md'
+      - 'HANDOFF_TEMPLATE.md'
+      - 'SKILL_INDEX.md'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and enrich all six ZIPs
+        shell: python
+        run: |
+          import io, zipfile, hashlib, json, pathlib
+          root = pathlib.Path("skills")
+          mapping = {
+            "01-github-continuity.zip": ["AGENTS.md","HANDOFF_TEMPLATE.md"],
+            "02-ios-deb-ipa-carplay.zip": ["DEB_IPA_SKILL.md"],
+            "03-python-crawler-resolver.zip": ["PYTHON_CRAWLER_SKILL.md"],
+            "04-ci-cd-render-cloud.zip": ["AGENTS.md"],
+            "05-research-debug-testing.zip": ["AGENTS.md"],
+            "06-artifact-zip-handoff.zip": ["HANDOFF_TEMPLATE.md"],
+          }
+          manifest = {}
+          for name, references in mapping.items():
+              path = root / name
+              with zipfile.ZipFile(path, "r") as original:
+                  content = {n: original.read(n) for n in original.namelist() if not n.endswith("/")}
+                  assert original.testzip() is None
+              for ref in references:
+                  content["references/" + ref] = pathlib.Path(ref).read_bytes()
+              content["references/GLOBAL_RULES.md"] = pathlib.Path("PROJECT_INSTRUCTIONS.md").read_bytes()
+              content["references/SKILL_INDEX.md"] = pathlib.Path("SKILL_INDEX.md").read_bytes()
+              content["references/VERIFICATION.md"] = (
+                  "# Verification and execution\n"
+                  "Identify exact work repo and checkpoint. Check version-matched sources. "
+                  "Run relevant tests, inspect logs, verify commit and update project handoff. "
+                  "Never claim device tests or deployments without evidence.\n"
+              ).encode()
+              temp = io.BytesIO()
+              with zipfile.ZipFile(temp, "w", compression=zipfile.ZIP_DEFLATED) as target:
+                  for entry in sorted(content):
+                      target.writestr(entry, content[entry])
+              data = temp.getvalue()
+              with zipfile.ZipFile(io.BytesIO(data)) as check:
+                  assert check.testzip() is None
+                  assert "SKILL.md" in check.namelist()
+              path.write_bytes(data)
+              manifest[name] = {"sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data), "entries": sorted(content)}
+          (root / "MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n")
+      - name: Commit verified skill archives
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add skills/*.zip skills/MANIFEST.json
+          if ! git diff --cached --quiet; then
+            git commit -m "skills: publish validated enriched ZIP packages"
+            git push
+          fi
