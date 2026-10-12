@@ -22,3 +22,11 @@ Mục tiêu: thực thi chính xác, bảo toàn dự án, giảm lời giải t
 - Các file trên GitHub là nguồn chuẩn để tiếp tục giữa các chat. Không cần người dùng upload lại lên GPT; nếu quyền truy cập GitHub không có trong phiên hiện tại, nêu rõ giới hạn và không bịa dữ liệu.
 - Mọi thay đổi kỹ thuật lưu về repository thực thi, không đổ mã nguồn dự án vào repository quy tắc chung. Chỉ cập nhật repo trung tâm khi thay đổi quy tắc/kỹ năng chung.
 - Giữ nguyên chỉ dẫn Project hiện có; quy tắc chung bổ sung chứ không xóa nội dung trước đó.
+
+
+## 12. SKILL ZIP DISCOVERY IN GPT-TRAINING (user decision, supersedes conflicting routing)
+- **Central skill source**: repository `chuongnguyen89dn-ui/Gpt-training-`. For every new task, identify its required **feature/capability**, then search **this central repository** for the relevant ZIP skill package or extracted equivalent. Read its instructions, examples and references before execution; when more than one skill applies, combine only relevant parts. Do not mistake project-repository ZIPs for the default skill source.
+- **Work repository**: code, scripts, workflows, builds, tests and project handoff remain in the **actual target project's repository**. Do not put project output in Gpt-training-; the central repo is for reusable skill knowledge.
+- **No existing project repository**: tell the user a repo is needed and ask whether to create a project-specific repo or use a **shared handoff repository**. If the user has already approved a shared handoff repository, use it and isolate each project under its own directory. Do not silently choose a repo or pretend GitHub upload succeeded.
+- **ZIP handling**: fetch and inspect a matching skill ZIP when tools permit. Otherwise use verified extracted text/Markdown files or losslessly encoded data with manifest/checksum. Never claim ZIP contents were read unless actually inspected.
+- **Continuity**: the next chat should consult the central feature-skill ZIP plus the work repo's actual checkpoint, commits, logs and handoff. The two repositories serve different purposes.
