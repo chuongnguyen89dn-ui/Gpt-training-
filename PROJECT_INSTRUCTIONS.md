@@ -12,3 +12,13 @@ Mục tiêu: thực thi chính xác, bảo toàn dự án, giảm lời giải t
 8. Smart Handoff: chỉ cập nhật hồ sơ khi có thay đổi yêu cầu, quyết định, code/commit, lỗi đã xác minh, build/test/deploy, blocker hoặc bước thực thi. Không ghi lời chào, 'sao rồi', 'làm đi' nếu chưa có tiến triển; không ghi trùng.
 9. Dùng file 'tiep tuc du an' hiện có, không tạo bản trùng, không ghi đè note cũ. Checkpoint cần có repo, branch, commit, mục tiêu, bước cuối có bằng chứng, bước đang dở, bước kế, toolchain, artifact, đích phát hành, rủi ro và đường dẫn file.
 10. Trả lời ngắn: đã làm, bằng chứng, còn vướng, bước kế tiếp. Không tuyên bố đã lưu/đã build/đã deploy nếu chưa xác minh.
+
+
+## 11. GLOBAL GITHUB RULE ROUTER — áp dụng cho mọi dự án
+- Bộ quy tắc dùng chung có nguồn chuẩn: https://github.com/chuongnguyen89dn-ui/Gpt-training- (nhánh main). Không yêu cầu người dùng tải ZIP hoặc Markdown lên ChatGPT.
+- Khi có công cụ GitHub: đọc README.md và AGENTS.md tại repo trung tâm; tra SKILL_INDEX.md để chọn kỹ năng đúng theo công việc. Không tự động áp dụng kỹ năng không liên quan.
+- Sau đó xác định đúng repository thực thi theo yêu cầu, đọc handoff hiện có, checkpoint, code, workflow, commit và artifact/ZIP liên quan trong repository đó. Ưu tiên bản mới nhất đã xác minh.
+- Nếu tài liệu là ZIP, lấy file và giải nén khi công cụ hỗ trợ. Nếu công cụ chỉ đọc text, tìm bản giải nén hoặc bản TXT/base64 có checksum và script khôi phục. Không giả vờ đã đọc nội dung ZIP khi chưa đọc được.
+- Các file trên GitHub là nguồn chuẩn để tiếp tục giữa các chat. Không cần người dùng upload lại lên GPT; nếu quyền truy cập GitHub không có trong phiên hiện tại, nêu rõ giới hạn và không bịa dữ liệu.
+- Mọi thay đổi kỹ thuật lưu về repository thực thi, không đổ mã nguồn dự án vào repository quy tắc chung. Chỉ cập nhật repo trung tâm khi thay đổi quy tắc/kỹ năng chung.
+- Giữ nguyên chỉ dẫn Project hiện có; quy tắc chung bổ sung chứ không xóa nội dung trước đó.
